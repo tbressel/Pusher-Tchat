@@ -1,0 +1,495 @@
+/*
+*
+*
+*   GLOBAL STYTLES
+*
+*/
+
+:root {
+    --pen-color: #000;
+    --paper-color: #FFF;
+    --blanc1: #fff;
+    --blanc2: #DEEDF7;
+    --blanc3: #f5f5f5;
+    --bleu0: #6495ED;
+    --bleu1: #2779AA;
+    --bleu2: #AED0EA;
+    --bleu2-alpha: #aed0ea8c;
+    --gris1: #585858;
+    --gris2: #838383;
+    --black: #000000
+}
+
+
+
+
+.tchatamstrad__mainwindows {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: transparent;
+}
+
+
+.tchatamstrad__windows--bottom {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 20px, 0px 100px 0px;
+    background-color: transparent;
+}
+
+.tchatamstrad__inputbox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.tchatamstrad__sendbox {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tchatamstrad__image img {
+    width: 33px;
+    height: 24px;
+}
+
+.tchatamstrad__button {
+    width: fit-content;
+
+}
+
+.tchatamstrad__button input[type="submit"] {
+    cursor: pointer;
+    height: 35px;
+    color: var(--blanc1);
+    background: linear-gradient(to bottom, var(--gris2), var(--gris1));
+
+    border-radius: 0px 50px 50px 0px;
+    font-weight: 500;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.tchatamstrad__input {
+    background-color: var(--blanc3);
+    border-radius: 50px 0px 0px 50px;
+    height: 35px;
+    width: 100%;
+
+}
+
+.tchatamstrad__windowscontainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 400px;
+}
+
+.tchatamstrad__windows--left {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border: solid 1px var(--bleu2);
+    word-break: break-word;
+    overflow-y: scroll;
+    background-color: var(--blanc1);
+}
+
+.tchatamstrad__windows--left .history {
+    display: flex;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--gris1);
+    margin-bottom: 0;
+    padding: 0;
+}
+.tchatamstrad__windows--left .daily {
+    display: flex;
+    font-size: 1.4rem;
+    color: var(--gris1);
+    margin-bottom: 0;
+}
+
+
+.tchatamstrad__windows--right {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: solid 1px var(--bleu2);
+    background-color: var(--blanc1);
+    overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.users__list {
+    margin: 0;
+    color: var(--black);
+    font-weight: 400;
+    font-size: 16px;
+    padding: 8px 0 0 8px;
+    list-style-type: none;
+}
+
+.users__list img {
+    width: auto;
+    height: 20px;
+    margin: 0 8px 0 0;
+}
+
+.message__container {
+    display: flex;
+    flex-direction: row;
+    font-size: 1rem;
+    width: fit-content;
+}
+
+.delete-icon img {
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    padding: 2px;
+    cursor: pointer;
+    /* margin: 4px; */
+}
+
+
+
+.timestamp {
+    margin: 2px;
+    font-weight: 400;
+    min-width: fit-content;
+    color: var(--black);
+}
+
+
+.username {
+    cursor: pointer;
+    margin: 2px 0 0 10px;
+    font-weight: 600;
+    min-width: fit-content;
+    color: var(--black);
+}
+
+
+.message {
+    margin: 2px 0 0 10px;
+    font-weight: 400;
+    word-break: auto-phrase;
+    color: var(--black);
+}
+
+/*
+Style of emociton overlay
+*/
+ .emoticons-overlay {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--blanc1);
+    color: var(--black);
+ }
+
+ 
+
+ .emoticons__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.emoticons__list>li {
+    cursor: pointer;
+    list-style-type: none;
+    margin: 4px;
+    font-size: 2.5rem;
+}
+
+
+
+/*
+Style of controls
+*/
+
+
+
+.tchatamstrad__controlbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    color: var(--black);
+    background-color: var(--blanc1);
+    border: solid 1px var(--bleu2);
+    border-radius: 6px; 
+}
+
+.tchatamstrad__controlbar button{
+    background-color: var(--bleu2);
+    border: none;
+    padding : 8px;
+    height: fit-content;
+}
+
+.tchatamstrad__controlbar--pen,
+.tchatamstrad__controlbar--paper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: fit-content;
+}
+.pen-color {
+    color: var(--pen-color);
+    background-color: var(--paper-color);
+}
+
+
+.tchatamstrad__controlbar--button.active {
+    background-color: var(--bleu1);
+}
+
+
+/*
+Style of edministration
+*/
+
+.visitor-display-label {
+    display: none;
+}
+
+#user_display_tchat:checked ~ .visitor-display-label {
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+/*
+*
+*
+*   MOBILE STYTLES
+*
+*/
+
+@media screen and (max-width: 768px) {
+
+
+    .tchatamstrad__mainwindows {
+        min-width: 320px;
+        padding: 10px;
+    }
+
+
+    .tchatamstrad__windows--bottom {
+        gap: 10px;
+    }
+
+    .tchatamstrad__sendbox {
+        width: 73px;
+    }
+
+    .tchatamstrad__button input[type="submit"] {
+        padding: 0;
+    }
+
+    .tchatamstrad__windowscontainer {
+        overflow: hidden;
+    }
+
+
+    .tchatamstrad__windows--right {
+        width: 0px;
+    }
+
+    .tchatamstrad__image img {
+        display: none;
+    }
+
+    .message__container {
+        font-size: 1rem;
+    }
+
+
+    .timestamp {
+        display: none;
+    }
+
+
+    /*
+    Design of the main container for single tabs
+    */
+
+    .tchatamstrad__tabsbarcontainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 4px;
+        border: solid 1px var(--bleu2);
+        border-radius: 6px 6px 0 0;
+        width: 100%;
+        background: linear-gradient(to bottom, var(--blanc1), var(--bleu2-alpha));
+    }
+
+
+    /* 
+    Design of the single tab
+    */
+
+
+    .tchatamstrad__tab {
+        border: solid 0.5px var(--bleu2);
+        border-radius: 6px 6px 0 0;
+        width: fit-content;
+    }
+
+    .tchatamstrad__content {
+        display: flex;
+        flex-direction: row;
+        margin: 8px 14px 8px 14px;
+    }
+
+    .tchatamstrad__content p {
+        cursor: pointer;
+        margin: 0;
+        color: var(--bleu1);
+        padding: 0 8px 0 0;
+        font-weight: 500;
+    }
+
+    .tchatamstrad__content p:hover {
+        color: var(--blanc1);
+    }
+
+    .tchatamstrad__tabimg {
+        display: flex;
+        align-items: center;
+    }
+
+
+    .hidden,
+    .tchatamstrad__controlbar button {
+        display: none;
+    }
+
+    
+
+}
+
+
+/*
+*
+*
+*   DESKTOP STYTLES
+*
+*/
+
+@media screen and (min-width: 768px) {
+
+    .tchatamstrad__mainwindows {
+        width: auto;
+        padding: 50px;
+    }
+
+
+    .tchatamstrad__windows--bottom {
+        gap: 20px;
+    }
+
+
+    .tchatamstrad__sendbox {
+        width: fit-content;
+    }
+
+    .tchatamstrad__button input[type="submit"] {
+        padding: 0 38px 0 38px;
+    }
+
+
+    .tchatamstrad__windows--right {
+        min-width: 200px;
+        max-width: 200px;
+    }
+
+
+    .message__container {
+        font-size: 1.7rem;
+        
+    }
+
+
+    /*
+    Design of the main container for single tabs
+    */
+
+    .tchatamstrad__tabsbarcontainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 4px;
+        border: solid 1px var(--bleu2);
+        border-radius: 6px 6px 0 0;
+        width: 100%;
+        background: linear-gradient(to bottom, var(--blanc1), var(--bleu2-alpha));
+    }
+
+
+    /* 
+    Design of the single tab
+    */
+
+
+    .tchatamstrad__tab {
+        border: solid 0.5px var(--bleu2);
+        border-radius: 6px 6px 0 0;
+        width: fit-content;
+    }
+
+    .tchatamstrad__content {
+        display: flex;
+        flex-direction: row;
+        margin: 8px 14px 8px 14px;
+    }
+
+    .tchatamstrad__content p {
+        cursor: pointer;
+        margin: 0;
+        color: var(--bleu1);
+        padding: 0 8px 0 0;
+        font-weight: 500;
+    }
+
+    .tchatamstrad__content p:hover {
+        color: var(--blanc1);
+    }
+
+    .tchatamstrad__tabimg {
+        display: flex;
+        align-items: center;
+    }
+
+
+    .hidden {
+        display: none;
+    }
+
+    .tchatamstrad__image img{
+        padding: 0px;
+        transition: 200ms ease-in-out;
+    }
+    .tchatamstrad__image img:hover{
+        padding: 2px;
+        transition: 200ms ease-in-out;
+    }
+
+
+}
