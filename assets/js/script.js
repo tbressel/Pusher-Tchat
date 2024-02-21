@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Initialisation de Pusher en dehors de la fonction submit
+    let darkmode = false;
+    let color = true;
+
+    /**
+     * Initialisation de la connexion à Pusher
+     */
+
     const pusher = new Pusher("f72327941966ca2f1fe5", {
         cluster: "eu",
         encrypted: true,
@@ -83,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
+    // Insert username in the message field when clicking on a username in the chat window
     let chatWindow = document.querySelector('.tchatamstrad__windows--left');
     if (chatWindow !== null) {
         chatWindow.addEventListener('click', function (event) {
@@ -95,134 +101,192 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+
+    // Insert an emoticon in the message field when clicking on an emoticon in the emoticon window
     let emoteWindow = document.querySelector('.tchatamstrad__windows--right');
     if (emoteWindow !== null) {
         emoteWindow.addEventListener('click', function (event) {
             let emoteElement = event.target.closest('.emoticon');
             if (emoteElement !== null) {
-                console.log(emoteElement, "est du type : ", typeof (emoteElement.textContent));
                 let code;
+                // The first condition is fixing a problme when using Chromium browser only in windows verion
+                // This motor browser is not able to display emoticon like a text format but like an image
                 if (emoteElement.textContent === "") {
                     code = emoteElement.querySelector('img').alt;
+                    // Condition for the rest of the browsers incliding Chromium in Linux or Mac OS
                 } else {
                     code = emoteElement.textContent;
                 }
-
-                console.log(code);
                 insertEmoticon(code);
             }
         });
     }
 
-
+    // Display or hide the emoticon window when clicking on the emoticon button
     document.getElementById('emoticon').addEventListener('click', function () {
         document.getElementById('emoticons-overlay').classList.toggle('hidden');
         document.getElementById('user-list').classList.toggle('hidden');
     });
 
-
-    function applyColorToSelector(selector, variableName, storageKey) {
-        // Fonction pour charger la couleur depuis le stockage local
-        function loadColorFromLocalStorage() {
-            const storedColor = localStorage.getItem(storageKey);
-            if (storedColor) {
-                document.documentElement.style.setProperty(variableName, storedColor);
-            }
-        }
-
-        // Parcourir chaque élément select avec la classe spécifiée
-        document.querySelectorAll(selector).forEach(select => {
-            // Ajout d'un écouteur d'événements pour le changement de sélection
-            select.addEventListener('change', (event) => {
-                const selectedOption = event.target.options[event.target.selectedIndex];
-                const color = selectedOption.dataset.setColor;
-                document.documentElement.style.setProperty(variableName, color);
-                // Enregistrer la couleur dans le stockage local
-                localStorage.setItem(storageKey, color);
-            });
-
-            // Charger la couleur depuis le stockage local (au chargement de la page)
-            loadColorFromLocalStorage();
-        });
-    }
-
-    // Appliquer la couleur aux éléments avec la classe .pen-color et enregistrer dans le stockage local
+    // Apply color to each elements contain .pen-color class and save into the local storage
     applyColorToSelector('.pen-color', '--pen-color', 'amstradtchat__penColor');
 
-    // Appliquer la couleur aux éléments avec la classe .paper-color et enregistrer dans le stockage local
+    //  Apply color to each elements contain .paper-color class and save into the local storage
     applyColorToSelector('.paper-color', '--paper-color', 'amstradtchat__paperColor');
 
 
-
+    // Just activate or not the sound notification
     document.getElementById('tchatamstrad__controlbar--sound').addEventListener('click', function () {
         this.classList.toggle('active');
     });
 
 
+    // Display or hide the timestamp when clicking on the timestamp button
+    document.getElementById('tchatamstrad__controlbar--hour').addEventListener('click', function () {
+        this.classList.toggle('active');
+        document.querySelectorAll('.timestamp').forEach(element => {
+            element.classList.toggle('hidden');
+        });
+    });
 
 
-    /**
-     * 
-     * Function to add a message to the chat window
-     * 
-     * @param {*} message 
-     * @param {*} username 
-     */
-    function displayMessage(message, username, pen, paper) {
+    // Display or hide the dark mode when clicking on the dark mode button
+    document.getElementById('tchatamstrad__controlbar--mode').addEventListener('click', function () {
+        darkmode = !darkmode;
+        console.log('le dark mode est à  :', darkmode);
+        this.classList.toggle('active');
 
-        timestamp = Math.floor(Date.now() / 1000)
-        message_key = username + "_" + timestamp;
+            // background windows turn to black
+            document.getElementById('chat').classList.toggle('black-backgroundcolor');
 
-        // Sélectionne l'élément qui représente la fenêtre de chat à gauche
-        let chatWindow = document.querySelector('.tchatamstrad__windows--left');
+            // Messages container too
+            document.querySelectorAll('.message__container').forEach(element => {
+                element.classList.toggle('black-backgroundcolor');
+            });
 
-        // Crée un nouvel élément de message
-        url = window.location.protocol + '//' + window.location.host;
-        imageLocation = '/wp-content/plugins/tchat-amstrad/assets/img/icon-croco.png';
-        imageUrl = url + imageLocation;
+            color = !color;
+            console.log('Je met les couleur à :', color);
+            document.querySelectorAll('.message').forEach(element => {
+                element.classList.toggle('white-color');
+            });
+            document.querySelectorAll('.timestamp').forEach(element => {
+                element.classList.toggle('white-color');
+            });
+            document.querySelectorAll('.username').forEach(element => {
+                element.classList.toggle('white-color');
+            });
+    });
 
-        let messageElement = document.createElement('div');
-        messageElement.classList.add('message__container');
-        messageElement.setAttribute('data-message-key', message_key);
-        messageElement.setAttribute('style', `background-color: ${paper};`);
-        messageElement.dataset.username = username;
+    // Display or hide the color mode when clicking on the color mode button
+    document.getElementById('tchatamstrad__controlbar--color').addEventListener('click', function () {
+        color = !color;
+        console.log('Les couleurs sont à : ', color);
+        this.classList.toggle('active');
+        document.querySelectorAll('.message__container').forEach(element => {
+            element.classList.toggle('white-backgroundcolor');
+        });
+
+  
+            document.querySelectorAll('.message').forEach(element => {
+                element.classList.toggle('black-color');
+            });
+            document.querySelectorAll('.timestamp').forEach(element => {
+                element.classList.toggle('black-color');
+            });
+            document.querySelectorAll('.username').forEach(element => {
+                element.classList.toggle('black-color');
+            });
+        })
+
+ 
+});
 
 
-        messageElement.innerHTML = `
+/**
+ * 
+ * Function to apply a color to an element from the local storage value
+ * 
+ * @param {*} selector 
+ * @param {*} variableName 
+ * @param {*} storageKey 
+ */
+function applyColorToSelector(selector, variableName, storageKey) {
+    // Loading colors from the localstorage 
+    function loadColorFromLocalStorage() {
+        const storedColor = localStorage.getItem(storageKey);
+        if (storedColor) {
+            document.documentElement.style.setProperty(variableName, storedColor);
+        }
+    }
+
+    // Selecting the seletc elements in the DOM
+    document.querySelectorAll(selector).forEach(select => {
+        // Listen to every change on these both select elements
+        select.addEventListener('change', (event) => {
+            const selectedOption = event.target.options[event.target.selectedIndex];
+            const color = selectedOption.dataset.setColor;
+            document.documentElement.style.setProperty(variableName, color);
+            // Recording the value of the new  color selected in the local storage
+            localStorage.setItem(storageKey, color);
+        });
+
+        // Loading the colors from the local storage when the page is loaded
+        loadColorFromLocalStorage();
+    });
+}
+
+/**
+ * 
+ * Function to add a message to the chat window
+ * 
+ * @param {*} message 
+ * @param {*} username 
+ */
+function displayMessage(message, username, pen, paper) {
+
+    timestamp = Math.floor(Date.now() / 1000)
+    message_key = username + "_" + timestamp;
+
+    // Sélectionne l'élément qui représente la fenêtre de chat à gauche
+    let chatWindow = document.querySelector('.tchatamstrad__windows--left');
+
+    // Crée un nouvel élément de message
+    url = window.location.protocol + '//' + window.location.host;
+    imageLocation = '/wp-content/plugins/tchat-amstrad/assets/img/icon-croco.png';
+    imageUrl = url + imageLocation;
+
+    let messageElement = document.createElement('div');
+    messageElement.classList.add('message__container');
+    messageElement.setAttribute('data-message-key', message_key);
+    messageElement.setAttribute('style', `background-color: ${paper};`);
+    messageElement.dataset.username = username;
+
+
+    messageElement.innerHTML = `
             <div class="delete-icon"><img src="${imageUrl}" alt="delete"></div>
             <div class="timestamp" style="color: ${pen};" >${getCurrentTimestamp()}</div>
             <div class="username" style="color: ${pen};">${username} : </div>
             <div class="message" style="color: ${pen};">${message}</div>
         `;
 
-        // Ajoute le nouvel élément de message à la fenêtre de chat
-        chatWindow.appendChild(messageElement);
+    // Ajoute le nouvel élément de message à la fenêtre de chat
+    chatWindow.appendChild(messageElement);
 
-        // Supposons que #chat est l'ID de l'élément où vous affichez les messages
-        const chatContainer = document.getElementById('chat');
+    // Supposons que #chat est l'ID de l'élément où vous affichez les messages
+    const chatContainer = document.getElementById('chat');
 
-        // Ensuite, après avoir ajouté un nouveau message, faites défiler vers le bas
-        chatContainer.scrollTop = chatContainer.scrollHeight;
+    // Ensuite, après avoir ajouté un nouveau message, faites défiler vers le bas
+    chatContainer.scrollTop = chatContainer.scrollHeight;
 
-        // Vérifier si le bouton de notification sonore est activé
-        if (document.getElementById('tchatamstrad__controlbar--sound').classList.contains('active')) {
-            // Si le bouton est activé, jouer le son
-            document.getElementById('message-sound').play();
-        }
-
-
+    // Vérifier si le bouton de notification sonore est activé
+    if (document.getElementById('tchatamstrad__controlbar--sound').classList.contains('active')) {
+        // Si le bouton est activé, jouer le son
+        document.getElementById('message-sound').play();
     }
 
 
-    document.getElementById('tchatamstrad__controlbar--hour').addEventListener('click', function () {
-        this.classList.toggle('active');
-        document.querySelectorAll('.timestamp').forEach(element => {
-            element.classList.toggle('hidden');
+}
 
-        });
-    });
-
-});
 /**
  * 
  * Function to get the current timestamp with the format HH:MM:SS

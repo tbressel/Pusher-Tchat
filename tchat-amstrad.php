@@ -645,7 +645,7 @@ function tchat_amstrad_display_control_bar($isAnonymous, $isUser)
                     <button id="tchatamstrad__controlbar--sound" class="tchatamstrad__controlbar--button">Notification sonore</button>
                 </label>
                 <label for="tchatamstrad__controlbar--color">
-                    <button id="tchatamstrad__controlbar--color" class="tchatamstrad__controlbar--button">Couleur Pseudo</button>
+                    <button id="tchatamstrad__controlbar--color" class="tchatamstrad__controlbar--button active">Couleur Pseudo</button>
                 </label>
                 <label for="tchatamstrad__controlbar--mode">
                     <button id="tchatamstrad__controlbar--mode" class="tchatamstrad__controlbar--button">Thème sombre</button>

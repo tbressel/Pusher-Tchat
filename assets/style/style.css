@@ -252,6 +252,22 @@ Style of controls
     background-color: var(--bleu1);
 }
 
+.white-backgroundcolor {
+   background-color: var(--blanc1) !important;
+}
+
+.black-color {
+    color: var(--black) !important;
+}
+
+.white-color {
+    color: var(--blanc1) !important;
+    
+}
+.black-backgroundcolor {
+    background-color: var(--black) !important;
+}
+
 
 /*
 Style of edministration
