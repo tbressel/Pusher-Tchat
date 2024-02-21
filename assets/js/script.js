@@ -158,11 +158,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // background windows turn to black
             document.getElementById('chat').classList.toggle('black-backgroundcolor');
-
+            document.querySelector('.tchatamstrad__windows--right').classList.toggle('black-backgroundcolor');
             // Messages container too
             document.querySelectorAll('.message__container').forEach(element => {
                 element.classList.toggle('black-backgroundcolor');
             });
+            document.getElementById('emoticons-overlay').classList.toggle('black-backgroundcolor');
+            document.getElementById('tchatamstrad-message').classList.toggle('black-backgroundcolor');
 
             color = !color;
             console.log('Je met les couleur à :', color);
@@ -175,6 +177,12 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.username').forEach(element => {
                 element.classList.toggle('white-color');
             });
+
+            const userElements = document.getElementById('user-list')
+            userElements.querySelectorAll('li').forEach(element => {
+                element.classList.toggle('white-color');
+            })
+            document.getElementById('tchatamstrad-message').classList.toggle('white-color');
     });
 
     // Display or hide the color mode when clicking on the color mode button
