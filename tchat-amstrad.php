@@ -555,7 +555,7 @@ function tchat_amstrad_display_control_bar($isAnonymous, $isUser)
                     <button id="tchatamstrad__controlbar--mode" class="tchatamstrad__controlbar--button">Thème sombre</button>
                 </label>
                 <label for="tchatamstrad__controlbar--hour">
-                    <button id="tchatamstrad__controlbar--hour" class="tchatamstrad__controlbar--button">Heure</button>
+                    <button id="tchatamstrad__controlbar--hour" class="tchatamstrad__controlbar--button active">Heure</button>
                 </label>
             </div>
             <div>
@@ -651,7 +651,7 @@ function tchat_amstrad_display_control_bar($isAnonymous, $isUser)
                     <button id="tchatamstrad__controlbar--mode" class="tchatamstrad__controlbar--button">Thème sombre</button>
                 </label>
                 <label for="tchatamstrad__controlbar--hour">
-                    <button id="tchatamstrad__controlbar--hour" class="tchatamstrad__controlbar--button">Heure</button>
+                    <button id="tchatamstrad__controlbar--hour" class="tchatamstrad__controlbar--button active">Heure</button>
                 </label>
             </div>
             <div>

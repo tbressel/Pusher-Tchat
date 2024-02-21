@@ -247,6 +247,7 @@ Style of controls
 }
 
 
+.tchatamstrad__controlbar--button.active,
 .tchatamstrad__controlbar--button.active {
     background-color: var(--bleu1);
 }
