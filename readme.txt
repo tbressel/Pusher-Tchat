@@ -71,8 +71,11 @@ Custom chat for word press
 = 1.14 = 
 * Ajout de la possibilité de changer de thème sombre à clair et vice versa.
 
-= 1.15 =
+= 1.14.1 =
 * Correction de la position du bouton send pour le faire passer au dessus du bouton de remonté automatique présent dans le site.
+
+= 1.14.2 =
+* Correction de la taille des messages.
 
 
 
