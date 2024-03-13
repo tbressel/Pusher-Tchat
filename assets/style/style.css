@@ -315,6 +315,8 @@ Style of edministration
 
     .tchatamstrad__button input[type="submit"] {
         padding: 0;
+        position: relative;
+        z-index: 2000;
     }
 
     .tchatamstrad__windowscontainer {
@@ -437,10 +439,10 @@ Style of edministration
     }
 
 
-    .message__container {
+    /* .message__container {
         font-size: 1.7rem;
         
-    }
+    } */
 
 
     /*

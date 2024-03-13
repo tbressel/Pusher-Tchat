@@ -1,48 +1,26 @@
 <?php
-/*
-Plugin Name: Tchat Amstrad
-Plugin URI: https://amstrad.eu/
-Description: Ceci est mon premier plugin créé spécialement pour la communauté Amstrad.eu
-Author: Zisquier
-Version: 1.12.1
+/**
+ * Tchat Amstrad Plugin.
+ * 
+ * @copyright Copyright (C) 2024, Thomas Bressel - tbressel.dev@gmail.com
+ * @since             1.0.0
+ * @package           Tchat_Amstrad 
+ * 
+ * @wordpress-plugin
+ * Plugin Name: Tchat Amstrad
+ * Version: 1.14.1
+ * Plugin URI: https://www.amstariga.net/
+ * Description: Ceci est mon premier plugin créé spécialement pour la communauté Amstrad.eu
+ * Author: Zisquier
+ * Autor URI: https://www.thomas-bressel.com/
+ * Text Domain: tchat-amstrad
+ * Requires at least: 5.2
+ * Requires PHP: 8.1
+ * 
+ * 
 */
 
 
-
-// version 1.0 : Création de l'interface du tchat avec les onglets, la fenêtre de discussion et le formulaire d'envoi de message
-// version 1.1 : Ajout de la fonctionnalité d'envoie de message en AJAX vers le serveur de Pusher
-// version 1.2 : Ajout de la fonctionnalité d'affichage des utilisateurs connectés en temps réel dans le client
-// version 1.3 : Ajout de la fonctionnalité d'affichage de l'historique des messages
-// version 1.4 : Ajoute de la fonctionnalité d'affichage des onglets et de la fenêtre de discussion en fonction des options de l'administrateur
-// version 1.5 : Ajout de la possibilité de répondre à un message en cliquant dessus
-// version 1.6 : Correcttion du champ de saisie de message qui ne se vide pas après l'envoie d'un message
-// version 1.7 : Ajout de fake-users (MissX, Allan, Amélie Minuit, nuts) nuts est visible uniquement par l'utilisateur 'ben'
-// version 1.8 : Ajout d'un nonce stocké dans les options de WordPress pour protéger contre les attaques CSRF
-// version 1.8.1 : Correction de l'affichage de l'icone croco à coté du pseudo selon le slug de la page
-// version 1.9 : Ajout du responsive design pour les mobiles et les tablettes
-// version 1.10 : Persistance des messages dans le Tchat quand on navige sur le site.
-// version 1.10.1 : Désactivation temporaire de la gestinon de l'historique
-// version 1.10.2 : Ajout d'une banque de gif animés.
-// version 1.11 : Ajout d'une banque de emojis modenre à la place des gif animés.
-// version 1.11.2 : Correction de bug sur le moteur Chromium version windows où les emoticons ne s'affichaient pas.
-// version 1.12 : Ajoute da la barre de controle incluant les couleurs de pen et de paper, les notifications sonores, les emoticones et le thème sombre
-// version 1.12.1 : Ajout de la fonctionnalité de couleur de pen et de paper ajouté en base de donnée pour la persistance des couleurs.
-
-
-
-// à améliorer :  
-// nettoyer l'input du champ de saisie juste apres le clique du bouton d'envoie de message pour éviter les doublons
-// les liens doivent être cliquables
-// limiter le nombre de caractère à 512 dans le champ de saisie de message
-// ajouter des emoticones
-
-
-
-// include('tchat-install.php');
-
-// include_once('tchat-admin.php');
-
-// include('tchat-config.php');
 
 // ADMINISTRATION  ---> Ajout d'une page de réglages dans l'administration
 function tchat_amstrad_menu_page()
@@ -62,6 +40,7 @@ add_action('admin_menu', 'tchat_amstrad_menu_page');
 /////////////////////////////////////////////////////////////////////////////
 ////////////////////////   CONFIGURATION GENERAL   //////////////////////////
 /////////////////////////////////////////////////////////////////////////////
+
 
 
 // créer un fichier log dans le dossier du plugin quand celui-ci est activé
@@ -164,7 +143,6 @@ function tchatamstrad_messages_save($user, $message, $pen, $paper)
  */
 function get_daily_messages()
 {
-
     global $wpdb;
 
     $table_name = $wpdb->prefix . 'tchatamstrad_messages';
@@ -534,37 +512,8 @@ function tchat_amstrad_display_control_bar($isAnonymous, $isUser)
 { ?>
     <div class="tchatamstrad__controlbar">
         <?php
-        if ($isAnonymous && !is_user_logged_in()) {
-            // Afficher les controle pour les visiteur connectés
-        ?>
-            <div class="tchatamstrad__controlbar--pen">
 
-            </div>
-            <div class="tchatamstrad__controlbar--paper">
-
-            </div>
-            <div class="tchatamstrad__controlbar--buttons">
-
-                <label for="tchatamstrad__controlbar--sound">
-                    <button id="tchatamstrad__controlbar--sound" class="tchatamstrad__controlbar--button">Notification sonore</button>
-                </label>
-                <label for="tchatamstrad__controlbar--color">
-                    <button id="tchatamstrad__controlbar--color" class="tchatamstrad__controlbar--button">Couleur Pseudo</button>
-                </label>
-                <label for="tchatamstrad__controlbar--mode">
-                    <button id="tchatamstrad__controlbar--mode" class="tchatamstrad__controlbar--button">Thème sombre</button>
-                </label>
-                <label for="tchatamstrad__controlbar--hour">
-                    <button id="tchatamstrad__controlbar--hour" class="tchatamstrad__controlbar--button active">Heure</button>
-                </label>
-            </div>
-            <div>
-                <audio id="message-sound" src="<?php echo plugin_dir_url(__FILE__); ?>assets/sounds/message.mp3" preload="auto"></audio>
-            </div>
-        <?php
-        }
-
-        if ($isUser && is_user_logged_in()) {
+       if ($isUser && is_user_logged_in()) {
             // Afficher les controle pour les visiteur connectés
         ?>
             <div class="tchatamstrad__controlbar--pen">
@@ -663,7 +612,8 @@ function tchat_amstrad_display_control_bar($isAnonymous, $isUser)
         }
         ?>
     </div>
-<?php }
+<?php 
+ }
 
 
 /**
